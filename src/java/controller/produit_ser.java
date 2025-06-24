@@ -39,7 +39,7 @@ public class produit_ser extends HttpServlet {
         int result=prix*qut;
         request.setAttribute("result", result);
         request.getRequestDispatcher("result.jsp").forward(request, response);
-      
+   
         }
     }
 

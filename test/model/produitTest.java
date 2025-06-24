@@ -32,7 +32,7 @@ public class produitTest {
         int result = instance.prix_total(prix, quantite);
         assertEquals(expResult, result);
       
-        fail("The test case is a prototype.");
+       
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.junit.After;
@@ -13,6 +14,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -26,12 +30,22 @@ public class produit_serTest {
     @Test
     public void testDoPost() throws Exception {
         System.out.println("doPost");
-        HttpServletRequest request = mock;
-        HttpServletResponse response = null;
-        produit_ser instance = new produit_ser();
-        instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+         RequestDispatcher dispatcher = mock ( RequestDispatcher.class);
+              when(request.getParameter("designation")).thenReturn("prod");
+              when(Integer.parseInt(request.getParameter("prix"))).thenReturn (50);
+               when(Integer.parseInt(request.getParameter("quantite"))).thenReturn(2);
+               when(request.getRequestDispatcher("result.jsp")).thenReturn(dispatcher);
+               produit_ser instance = new produit_ser();    
+               instance.doPost(request, response); 
+              verify(dispatcher).forward(request, response);
     }
-    
 }
+               
+               
+               
+       
+
+      
+     
